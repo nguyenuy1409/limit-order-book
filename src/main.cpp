@@ -1,6 +1,6 @@
 #include <iostream>
-
+#include "Order.hpp"
 int main() {
-    std::cout << "Limit Order Book Test" << "\n";
+    Order order1("001", "AAPL", 100, "limit", "bid", 150, "day");
     return 0;
 }
