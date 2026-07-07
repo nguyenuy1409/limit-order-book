@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Order.hpp"
+#include "PriceLevel.hpp"
 int main() {
-    Order order1("001", "AAPL", 100, "limit", "bid", 150, "day");
+    PriceLevel level(100);
     return 0;
 }
