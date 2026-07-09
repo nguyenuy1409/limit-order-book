@@ -21,4 +21,11 @@ public:
         this->price = price;
         this->time_in_force = time_in_force;
     }
+
+    std::string getSide() {
+        return side;
+    }
+    int getPrice() {
+        return price;
+    }
 };
