@@ -17,8 +17,17 @@ void OrderBook::insert(Order& order) {
         asks[order.getPrice()].addOrder(order);
     }
 }
+
+
+// Function to cancel order
 void OrderBook::cancel(std::string order_id) {
     if(cancelledOrders.count(order_id) == 0) {
         cancelledOrders[order_id] = true;
     } 
+}
+
+// Function to modify order
+void OrderBook::modify(Order& order) {
+    cancel(order.getOrderId());
+    insert(order);
 }
