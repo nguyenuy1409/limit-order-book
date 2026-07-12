@@ -17,3 +17,8 @@ void OrderBook::insert(Order& order) {
         asks[order.getPrice()].addOrder(order);
     }
 }
+void OrderBook::cancel(std::string order_id) {
+    if(cancelledOrders.count(order_id) == 0) {
+        cancelledOrders[order_id] = true;
+    } 
+}

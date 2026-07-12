@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <unordered_map>
 #include <functional>
 #include <utility>
 #include "PriceLevel.hpp"
@@ -9,6 +10,7 @@ class OrderBook {
 private:
     std::map<int, PriceLevel> asks;
     std::map<int, PriceLevel, std::greater<int>> bids;
+    std::unordered_map<std::string, bool> cancelledOrders;
 public:
     std::pair<int, int> getTopOfBook();
     void insert(Order& order);
