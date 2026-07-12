@@ -11,6 +11,7 @@ private:
     std::map<int, PriceLevel> asks;
     std::map<int, PriceLevel, std::greater<int>> bids;
     std::unordered_map<std::string, bool> cancelledOrders;
+    void match();
 public:
     std::pair<int, int> getTopOfBook();
     void insert(Order& order);
