@@ -1,4 +1,5 @@
 #include "OrderBook.hpp"
+#include <iostream>
 
 // Function to get the best bid and best ask
 std::pair<int, int> OrderBook::getTopOfBook() {
@@ -37,11 +38,12 @@ void OrderBook::modify(Order& order) {
 
 void OrderBook::match() {
     auto bbo = getTopOfBook();
-        int bestBid = bbo.first;
-        int bestAsk = bbo.second;
+    int bestBid = bbo.first;
+    int bestAsk = bbo.second;
     while(bestBid >= bestAsk) {
         int bestBidQuantity = (bids.begin()->second).getFront().getQuantity();
         int bestAskQuantity = (asks.begin()->second).getFront().getQuantity();
+
         if(bestBidQuantity > bestAskQuantity) {
             bestBidQuantity-=bestAskQuantity;
             bids[bestBid].getFront().reduceQuantity(bestAskQuantity);
@@ -76,4 +78,8 @@ void OrderBook::match() {
         bestBid = bbo.first;
         bestAsk = bbo.second;
     }
+}
+
+int OrderBook::getBestBidQuantity() {
+    return (bids.begin()->second).getFront().getQuantity();
 }

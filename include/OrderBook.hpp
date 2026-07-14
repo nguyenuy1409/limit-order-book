@@ -17,4 +17,6 @@ public:
     void insert(Order& order);
     void cancel(std::string order_id);
     void modify(Order& order);
+
+    int getBestBidQuantity();
 };
