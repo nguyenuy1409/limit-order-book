@@ -37,4 +37,10 @@ public:
     void markCancelled() {
         isCancelled = true;
     }
+    int getQuantity() {
+        return quantity;
+    }
+    void reduceQuantity(int amount) {
+        quantity-=amount;
+    }
 };
