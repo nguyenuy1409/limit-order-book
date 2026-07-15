@@ -14,6 +14,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(LimitOrderBook 
     src/main.cpp
     src/OrderBook.cpp
+    src/PriceLevel.cpp
 )
 
 target_include_directories(LimitOrderBook PRIVATE include)
@@ -22,6 +23,7 @@ target_include_directories(LimitOrderBook PRIVATE include)
 add_executable(tests
     tests/OrderBookTest.cpp
     src/OrderBook.cpp
+    src/PriceLevel.cpp
 )
 
 target_include_directories(tests PRIVATE include)
