@@ -83,3 +83,7 @@ void OrderBook::match() {
 int OrderBook::getBestBidQuantity() {
     return (bids.begin()->second).getFront().getQuantity();
 }
+
+int OrderBook::getBestAskQuantity() {
+    return (asks.begin()->second).getFront().getQuantity();
+}

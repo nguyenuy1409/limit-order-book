@@ -19,4 +19,5 @@ public:
     void modify(Order& order);
 
     int getBestBidQuantity();
+    int getBestAskQuantity();
 };

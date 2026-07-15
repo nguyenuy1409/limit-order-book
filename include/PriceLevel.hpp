@@ -13,16 +13,8 @@ public:
     PriceLevel(int price) {
         this->price = price;
     }
-    void addOrder(Order& order) {
-        priceLevel.push(order);
-    }
-    Order& getFront() {
-        return priceLevel.front();
-    }
-    void pricePop() {
-        priceLevel.pop();
-    }
-    bool isEmpty() {
-        return priceLevel.empty();
-    }
+    void addOrder(Order& order);
+    Order& getFront();
+    void pricePop();
+    bool isEmpty();
 };
