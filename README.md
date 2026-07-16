@@ -30,6 +30,17 @@ However, `std::map` is not optimal for low-latency systems because it stores eac
 
 For future improvement, I plan to replace `std::map` with `std::flat_map`, which stores data contiguously in memory like `std::vector`, resulting in better cache locality and lower memory footprint. Though insert and delete in `std::flat_map` are slower than `std::map` because they have to shift elements to maintain sorted order — O(N) time complexity — the search complexity remains O(log N).
 
+## Benchmark Results
+
+Benchmarked using Google Benchmark on Windows (MinGW-W64, Debug build). The benchmark measures the time to insert N orders at N different price levels into a `std::map`-based `OrderBook`, forcing the map to create a new tree node for each insertion.
+
+<img width="1284" height="279" alt="image" src="https://github.com/user-attachments/assets/815ac8df-5123-48a1-a6ce-06903bc1d562" />
+*Raw output from Google Benchmark*
+
+The time roughly scales linearly with the number of orders (~10x time for ~10x orders), which is consistent with `std::map`'s O(log N) insert complexity — the log N factor grows slowly compared to N, so the dominant cost is proportional to N.
+
+This is the baseline before optimization. The next step is to switch to `std::flat_map` to reduce cache misses from `std::map`'s scattered heap allocations, then re-run this benchmark to measure the improvement.
+
 ## Matching Engine
 
 Two orders are matched when the bid price is greater than or equal to the ask price. The execution price is determined by the resting order — the order that arrived first becomes the maker and sets the price, while the incoming order is the taker. If the incoming order cannot be fully filled by a single resting order, it will continue matching against the next orders in the queue. This is called a partial fill.
