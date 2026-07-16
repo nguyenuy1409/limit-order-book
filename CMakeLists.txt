@@ -30,3 +30,21 @@ add_executable(tests
 
 target_include_directories(tests PRIVATE include)
 target_link_libraries(tests gtest_main)
+
+# Google Benchmark
+FetchContent_Declare(
+    googlebenchmark
+    URL https://github.com/google/benchmark/archive/refs/tags/v1.8.3.zip
+)
+set(BENCHMARK_ENABLE_TESTING OFF)
+FetchContent_MakeAvailable(googlebenchmark)
+
+add_executable(benchmarks
+    benchmarks/OrderBookBenchmark.cpp
+    src/OrderBook.cpp
+    src/PriceLevel.cpp
+    src/Order.cpp
+)
+
+target_include_directories(benchmarks PRIVATE include)
+target_link_libraries(benchmarks benchmark::benchmark)
