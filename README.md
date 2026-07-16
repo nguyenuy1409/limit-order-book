@@ -35,7 +35,7 @@ For future improvement, I plan to replace `std::map` with `std::flat_map`, which
 Benchmarked using Google Benchmark on Windows (MinGW-W64, Debug build). The benchmark measures the time to insert N orders at N different price levels into a `std::map`-based `OrderBook`, forcing the map to create a new tree node for each insertion.
 
 <img width="1284" height="279" alt="image" src="https://github.com/user-attachments/assets/815ac8df-5123-48a1-a6ce-06903bc1d562" />
-*Raw output from Google Benchmark*
+<p align="center"><em>Raw output from Google Benchmark</em></p>
 
 The time roughly scales linearly with the number of orders (~10x time for ~10x orders), which is consistent with `std::map`'s O(log N) insert complexity — the log N factor grows slowly compared to N, so the dominant cost is proportional to N.
 
