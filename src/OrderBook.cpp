@@ -41,6 +41,29 @@ void OrderBook::match() {
     int bestBid = bbo.first;
     int bestAsk = bbo.second;
     while(bestBid >= bestAsk) {
+        bbo = getTopOfBook();
+        bestBid = bbo.first;
+        bestAsk = bbo.second;
+
+        if(bestBid == -1 || bestAsk == 0) {
+            break;
+        }
+
+        if(cancelledOrders[(bids.begin()->second).getFront().getOrderId()] == true) {
+            (bids.begin()->second).pricePop();
+            if(bids[bestBid].isEmpty()) {
+                bids.erase(bestBid);
+            }
+            continue;
+        }
+        if(cancelledOrders[(asks.begin()->second).getFront().getOrderId()] == true) {
+            (asks.begin()->second).pricePop();
+            if(asks[bestAsk].isEmpty()) {
+                asks.erase(bestAsk);
+            }
+            continue;
+        }
+
         int bestBidQuantity = (bids.begin()->second).getFront().getQuantity();
         int bestAskQuantity = (asks.begin()->second).getFront().getQuantity();
 
@@ -74,9 +97,6 @@ void OrderBook::match() {
                 asks.erase(bestAsk);
             }
         }
-        bbo = getTopOfBook();
-        bestBid = bbo.first;
-        bestAsk = bbo.second;
     }
 }
 

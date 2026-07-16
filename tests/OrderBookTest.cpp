@@ -34,3 +34,14 @@ TEST(OrderBookTest, PartialFill) {
     EXPECT_EQ(book.getBestBidQuantity(), 600);
     EXPECT_EQ(book.getTopOfBook().second, 0);
 }
+
+TEST(OrderBookTest, CancelOrder) {
+    Order bid("001", "Nuke", 667, "limit", "bid", 69, "day");
+    Order ask("003", "Nuke", 67, "limit", "ask", 69, "day");
+    OrderBook book;
+    book.insert(bid);
+    book.cancel(bid.getOrderId());
+    book.insert(ask);
+    EXPECT_EQ(book.getTopOfBook().first, -1);
+    EXPECT_EQ(book.getTopOfBook().second, 0);
+}
