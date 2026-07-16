@@ -25,22 +25,10 @@ public:
         this->isCancelled = false;
     }
 
-    std::string getSide() {
-        return side;
-    }
-    int getPrice() {
-        return price;
-    }
-    std::string getOrderId() {
-        return order_id;
-    }
-    void markCancelled() {
-        isCancelled = true;
-    }
-    int getQuantity() {
-        return quantity;
-    }
-    void reduceQuantity(int amount) {
-        quantity-=amount;
-    }
+    std::string getSide();
+    int getPrice();
+    std::string getOrderId();
+    void markCancelled();
+    int getQuantity();
+    void reduceQuantity(int amount);
 };
